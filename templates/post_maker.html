@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .error-message {
+            color: #d9534f;
+            background-color: #fdf7f7;
+            border: 1px solid #d9534f;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    {% if error %}
+        <div class="error-message">
+            <strong>Error:</strong> {{ error }}
+        </div>
+    {% endif %}
+    <form method="POST">
+    <input type="text" placeholder="Heading" name="heading">
+    <br>
+    <textarea rows ="25" cols="30"  name="paragraph"></textarea><br>
+    <button type="submit"> submit</button>
+    </form> 
+</body>
+
+
+</html>
