@@ -67,5 +67,22 @@ def post_display(filename):
 
 
     return render_template("post_display.html",post_data=data)
+@app.route("/admin/<filename>",methods=["GET", "POST"])
+def edit(filename):
+    filename= filename.rstrip(".")
+    filePath=os.path.join(folder_name,f"{filename}.json")
+    with open(filePath,"r",encoding="utf-8")as f:
+        data=json.load(f)
+    if request.method=="POST":
+        paragraph= request.form.get("paragraph")
+        heading=request.form.get("heading")
+        dictionary={}
+        dictionary["heading"]=heading
+        dictionary["paragraph"]=paragraph
+        with open(filePath,"w",encoding="utf-8")as f:
+            json.dump(dictionary,f,indent=4) 
+        return redirect(url_for("home"))
+    return render_template("edit.html",paragraph=data["paragraph"],heading=data["heading"])
+
 if __name__== "__main__":
     app.run(debug=True)
